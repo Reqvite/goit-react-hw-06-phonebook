@@ -22,10 +22,9 @@ export const contactsReducer = createReducer(contactsInitialState, {
 
 export const filtersReducer = createReducer('', {
     [contactsFilter]: (state, action) => {
-        console.log(state)
-        console.log(action)
-        console.log(state.filter(({ name }) => name.toLowerCase().includes(action.payload.toLowerCase())) )
-
-    state.filter(({ name }) => name.toLowerCase().includes(action.payload.toLowerCase())) 
+        console.log(action.payload)
+        
+      return  state = action.payload
+    // state.filter(({ name }) => name.toLowerCase().includes(action.payload.toLowerCase())) 
     }
 })

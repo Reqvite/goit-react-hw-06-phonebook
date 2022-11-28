@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-
 import { FormStyled, Label, Input, Button } from "./ContactForm.style";
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/actions';
 
-
 export const ContactForm = () => {
+
+  const contacts = useSelector(state => state.contacts)
+
   const dispatch = useDispatch()
 
     const handleSubmit = e => {
@@ -16,10 +16,13 @@ export const ContactForm = () => {
     const values = {
       name, number
     };
-    dispatch(addContact(values))
-    form.reset();
+              if (contacts.map((({name}) => name.toLowerCase())).includes(name.toLowerCase())) {
+       alert(`${name} is already in contacts.`)
+      } else {
+         dispatch(addContact(values))
+    }  
+        form.reset();
   }
-
 
     return (
    <FormStyled onSubmit={handleSubmit}>
@@ -44,11 +47,6 @@ export const ContactForm = () => {
     <Button type='submit'>Add contact</Button>
     </FormStyled>
     )
-}
-
-
-ContactForm.propTypes = {
-  getData: PropTypes.func.isRequired,
 }
 
 
