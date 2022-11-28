@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+
 import { List, Notification, ListItem } from "./ContactList.style";
 
 import { Contact } from 'components/Contact/Contact'; 

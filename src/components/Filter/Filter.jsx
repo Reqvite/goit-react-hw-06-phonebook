@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import { useDispatch} from 'react-redux';
-import { contactsFilter } from 'redux/actions';
+import { contactsFilter } from 'redux/filterSlice'; 
+
 import { FilterTitle, FilterInput } from "./Filter.styled"
-export const Filter = (({title}) => {
+export const Filter = () => {
    
 const dispatch = useDispatch()
  
@@ -10,12 +10,8 @@ const dispatch = useDispatch()
     
     return (
         <>
-        <FilterTitle>{title}</FilterTitle>
+        <FilterTitle>Find contacts by name</FilterTitle>
         <FilterInput type="text" onChange={handleFilter}/>
         </>
     )
-})
-
-Filter.propTypes = {
-    title: PropTypes.string.isRequired,
 }

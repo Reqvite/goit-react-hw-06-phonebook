@@ -1,6 +1,9 @@
-import { FormStyled, Label, Input, Button } from "./ContactForm.style";
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from "redux/contactsSlice";
+import { nanoid } from "nanoid";
+
+import { FormStyled, Label, Input, Button } from "./ContactForm.style";
+
 
 export const ContactForm = () => {
 
@@ -13,13 +16,13 @@ export const ContactForm = () => {
     const form = e.target;
     const name = form.elements[0].value
     const number = form.elements[1].value
-    const values = {
-      name, number
+    const contact = {
+      id: nanoid(), name, number 
     };
               if (contacts.map((({name}) => name.toLowerCase())).includes(name.toLowerCase())) {
        alert(`${name} is already in contacts.`)
       } else {
-         dispatch(addContact(values))
+         dispatch(addContact(contact))
     }  
         form.reset();
   }
