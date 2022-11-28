@@ -1,12 +1,28 @@
 import PropTypes from 'prop-types';
 
 import { FormStyled, Label, Input, Button } from "./ContactForm.style";
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/actions';
 
 
-export const ContactForm = (({getData }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch()
+
+    const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.elements[0].value
+    const number = form.elements[1].value
+    const values = {
+      name, number
+    };
+    dispatch(addContact(values))
+    form.reset();
+  }
+
 
     return (
-   <FormStyled onSubmit={getData}>
+   <FormStyled onSubmit={handleSubmit}>
  <Label htmlFor="name">Name
    <Input
   type="text"
@@ -28,7 +44,7 @@ export const ContactForm = (({getData }) => {
     <Button type='submit'>Add contact</Button>
     </FormStyled>
     )
-})
+}
 
 
 ContactForm.propTypes = {
